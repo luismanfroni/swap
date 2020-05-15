@@ -1,0 +1,6 @@
+
+
+enum AppArmorInstructions {
+    Directory(String),
+
+}
