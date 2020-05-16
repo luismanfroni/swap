@@ -107,7 +107,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@siul_manfroni](https://twitter.com/siul_manfroni) - luis.manfroni@catolicasc.org.br
+Luis Felipe Manfroni - [@siul_manfroni](https://twitter.com/siul_manfroni) - luis.manfroni@catolicasc.org.br
 
 Project Link: [https://github.com/luismanfroni/swap](https://github.com/luismanfroni/swap)
 
