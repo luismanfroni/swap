@@ -11,6 +11,14 @@
 
 <br />
 
+<div align="center">
+    <img alt="GitHub milestone"
+        src="https://img.shields.io/github/milestones/progress-percent/luismanfroni/swap/1?style=for-the-badge&color=%23DDDD00"
+        />
+</div>
+
+<br />
+
 <!-- PROJECT SHIELDS -->
 <div align="center">
     <a href="https://github.com/luismanfroni/swap/blob/master/LICENSE">
@@ -19,8 +27,11 @@
     <a href="https://github.com/luismanfroni/swap/stargazers">
         <img src="https://img.shields.io/github/stars/luismanfroni/swap.svg?style=for-the-badge" />
     </a>
-    <a href="https://github.com/luismanfroni/swap/issues">
-        <img src="https://img.shields.io/github/issues/luismanfroni/swap.svg?style=for-the-badge" />
+    <a href="https://github.com/luismanfroni/swap/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement">
+        <img src="https://img.shields.io/github/issues-raw/luismanfroni/swap/enhancement?color=%23003388&label=features&style=for-the-badge">
+    </a>
+    <a href="https://github.com/luismanfroni/swap/issues?q=is%3Aopen+is%3Aissue+label%3Abug">
+        <img src="https://img.shields.io/github/issues-raw/luismanfroni/swap/bug?color=%23D83333&label=bugs&style=for-the-badge">
     </a>
 </div>
 
