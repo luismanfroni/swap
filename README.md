@@ -9,7 +9,7 @@
     Is an Package Manager to introduce packages with AppArmor profiles easily to the end user.
 </div>
 
-
+<br />
 
 <!-- PROJECT SHIELDS -->
 <div align="center">
@@ -25,13 +25,13 @@
 </div>
 
 
-
+<br />
 
 <!-- PROJECT LOGO -->
-<br />
+
 <p align="center">
     <a href="https://github.com/luismanfroni/swap/releases">
-        <img src="![GitHub Releases](https://img.shields.io/github/downloads/luismanfroni/swap/master/total?style=for-the-badge)" />
+        <img src="https://img.shields.io/github/downloads/luismanfroni/swap/master/total.svg?style=for-the-badge" />
     </a>
     <br />
   <p align="center">
