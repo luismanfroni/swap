@@ -10,3 +10,4 @@ edition = "2018"
 shared = { path = "../shared" }
 brotli = "3.3.0"
 tar = "0.4"
+blake3 = "0.3.3"
