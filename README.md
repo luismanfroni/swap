@@ -12,9 +12,11 @@
 <br />
 
 <div align="center">
-    <img alt="GitHub milestone"
-        src="https://img.shields.io/github/milestones/progress-percent/luismanfroni/swap/1?style=for-the-badge&color=%23DDDD00"
-        />
+    <a href="https://github.com/luismanfroni/swap/releases">
+        <img alt="GitHub milestone"
+            src="https://img.shields.io/github/milestones/progress-percent/luismanfroni/swap/1?style=for-the-badge&color=%2323B023"
+            />
+    </a>
 </div>
 
 <br />
