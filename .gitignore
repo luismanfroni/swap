@@ -1,1 +1,6 @@
 target/
+cli/test/SwapFile
+cli/test/SwapFileTeste
+cli/test/arquivos/arquivo.txt
+cli/test/arquivos/test.txt
+cli/NewFile
