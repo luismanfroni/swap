@@ -4,13 +4,14 @@ use std::io;
 pub struct File {
     path: String,
     metadata: Option<fs::Metadata>,
-    bytes: Option<Vec<u8>>
+    bytes: Option<Vec<u8>>,
+    std_file: Option<std::fs::File>
 }
 
 pub fn new_file(path: &str) -> File {
     File {
         path: String::from(path),
-        bytes: None, metadata: None
+        bytes: None, metadata: None, std_file: None
     }
 }
 
@@ -38,6 +39,34 @@ impl File {
             match fs::metadata(&path) {
                 Ok(metadata) => {
                     metadata
+                }
+                Err(e) => {
+                    panic!("{}", e);
+                }
+            }
+        })
+    }
+
+    pub fn get_std_file(&mut self) -> &std::fs::File {
+        let path = self.path.clone();
+        self.std_file.get_or_insert_with(|| {
+            match std::fs::File::open(path) {
+                Ok(std_file) => {
+                    std_file
+                }
+                Err(e) => {
+                    panic!("{}", e);
+                }
+            }
+        })
+    }
+
+    pub fn new_std_file(&mut self) -> &std::fs::File {
+        let path = self.path.clone();
+        self.std_file.get_or_insert_with(|| {
+            match std::fs::File::create(path) {
+                Ok(std_file) => {
+                    std_file
                 }
                 Err(e) => {
                     panic!("{}", e);
