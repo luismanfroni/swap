@@ -1,30 +1,38 @@
 mod cli;
+use manager::{ file, checksum, compression, packager };
+use std::fs::File;
+use std::io::Read;
+use std::io::Write;
+
 fn main() {
-    println!("Star application <CLI>!");
-
     let opts = cli::app();
-    // Gets a value for config if supplied by user, or defaults to "default.conf"
-    println!("Value for config: {}", opts.config);
-    println!("Using input file: {}", opts.input);
+    match opts.command {
+        cli::Command::New(path) => {
+            let file: file::File = file::new_file(&path.input);
+            packager::parse_swap_file(file);
+        }
 
-    // Vary the output based on how many times the user used the "verbose" flag
-    // (i.e. 'myprog -v -v -v' or 'myprog -vvv' vs 'myprog -v'
-    match opts.verbose {
-        0 => println!("No verbose info"),
-        1 => println!("Some verbose info"),
-        2 => println!("Tons of verbose info"),
-        3 | _ => println!("Don't be crazy"),
-    }
+        cli::Command::Compress(c) => {
+            println!("Input File: {}", c.input);
+            println!("Compressed File: {}", c.second_input);
+            let mut input_file = file::new_file(&c.input);
+            let file_bytes = input_file.get_bytes().as_slice();
+            if let Ok(compressed_data) = compression::compress(file_bytes, 11) {
+                let mut output_file = file::new_file(&c.second_input);
 
-    // You can handle information about subcommands by requesting their matches by name
-    // (as below), requesting just the name used, or both at the same time
-    match opts.subcmd {
-        cli::SubCommand::Test(t) => {
-            if t.debug {
-                println!("Printing debug info...");
+                output_file.new_std_file().write_all(&compressed_data)
+                    .expect("Error trying to write compressed file!");
             } else {
-                println!("Printing normally...");
+                println!("Error on file input: {}", c.input)
             }
+        }
+        cli::Command::Checksum(c) => {
+            if c.debug {
+                println!("Debug; {}", c.input);
+            }
+            let mut file: file::File = file::new_file(&c.input);
+            let checksum = checksum::checksum(file.get_bytes());
+            println!("{}", checksum);
         }
     }
 }
