@@ -1,7 +1,6 @@
 pub struct Package {
-    id: String,
     name: String,
     author: String,
-    versions: Vec<String>,
+    pack: String,
     tags: Vec<String>
 }
