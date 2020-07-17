@@ -1,26 +1,44 @@
-use brotli;
-use std::io::prelude::*;
-use std::fs::{ File, Metadata };
-use tar::{ Archive, Builder };
+use std::io::Read;
+use tar::{ Builder, Archive, Entries };
+const BROTLI_BUFFER: usize = 4096;
+const BROTLI_WINDOW: u32 = 21;
 
-pub fn brotli_compress() {
-    let file = File::open("foo.tar").unwrap();
-    let mut a = Archive::new(file);
+pub fn compress(data: &[u8], quality: u32) -> Result<Vec<u8>, std::io::Error> {
+    let mut compressor = brotli::CompressorReader::new(data,
+        BROTLI_BUFFER, quality, BROTLI_WINDOW);
 
+    let mut compressed_data: Vec<u8> = Vec::new();
+    compressor.read_to_end(&mut compressed_data)?;
 
-    let mut input = brotli::CompressorReader::new(&mut io::stdin(), 4096 /* buffer size */,
-        quality as u32, lg_window_size as u32);
+    Ok(compressed_data)
+}
+pub fn decompress(data: Vec<u8>) -> Result<Vec<u8>, std::io::Error> {
+    let mut decompressor = brotli::Decompressor::new(data.as_slice(), BROTLI_BUFFER);
+    let mut decompressed_data: Vec<u8> = Vec::new();
+    decompressor.read_to_end(&mut decompressed_data)?;
+    Ok(decompressed_data)
 }
 
-pub fn tar_compression(String path, String name) -> {
-    let file = File::create(name + ".tar").unwrap();
-    let mut new_tar = Builder::new(file);
-
-    new_tar.append_path("file1.txt").unwrap();
-    new_tar.append_file("file2.txt", &mut File::open("file3.txt").unwrap()).unwrap();
-    new_tar.finish();
+pub fn new_tar(file: std::fs::File) -> Builder<std::fs::File> {
+    Builder::new(file)
 }
+
+pub fn from_tar(file: std::fs::File) ->  Archive<std::fs::File> {
+    Archive::new(file)
+}
+
+
+
+
+
+
+
+
+
+
+
 /*
+
 fn tar_uncompression() {
     let file = File::open("foo.tar").unwrap();
     let mut entries = Archive::new(file).entries().unwrap();
